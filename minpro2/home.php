@@ -27,57 +27,13 @@ if (!isset($_SESSION['loggedin'])) {
 		</div>
 	<div class="content-container">
 		<?php
-		// function timeSince($session_time) 
-		// { 
-		// $time_difference = time() - $session_time ; 
-		// $seconds = $time_difference ; 
-		// $minutes = round($time_difference / 60 );
-		// $hours = round($time_difference / 3600 ); 
-		// $days = round($time_difference / 86400 ); 
-		// $weeks = round($time_difference / 604800 ); 
-		// $months = round($time_difference / 2419200 ); 
-		// $years = round($time_difference / 29030400 ); 
 		
-		// if($seconds <= 60) echo"$seconds seconds ago";
-		// else if($minutes <=60)
-		// {
-		// if($minutes==1) echo"one minute ago"; 
-		// else echo"$minutes minutes ago"; 
-		// }
-		// else if($hours <=24)
-		// {
-		// if($hours==1) echo"one hour ago";
-		// else echo"$hours hours ago";
-		// }
-		// else if($days <=7)
-		// {
-		//   if($days==1)echo"one day ago";
-		//   else echo"$days days ago";
-		// }
-		// else if($weeks <=4)
-		// {
-		// if($weeks==1) echo"one week ago";
-		// else echo"$weeks weeks ago";
-		// }
-		// else if($months <=12)
-		// {
-		// if($months==1) echo"one month ago";
-		// else echo"$months months ago";
-		// }
-		// else
-		// {
-		// if($years==1) echo"one year ago";
-		// else echo"$years years ago";
-		// }
-		 
-		// } 
-		
-		
-
-		function timeSince($time) {
-			$time = time() - $time; // to get the time since that moment
+		function timeSince($times) {
+			date_default_timezone_set('Asia/Kolkata');
+			$time = time() - $times; // to get the time since that moment
 			$time = ($time<1)? 1 : $time;
-			$tokens = array (31536000 => 'year', 2592000 => 'month', 604800 => 'week', 86400 => 'day', 3600 => 'hour', 60 => 'minute', 1 => 'second');
+			// echo '<h1> '.time()." - ".$times." - ".$time. '</h1>';
+			$tokens = array (31536000 => 'year', 2592000 => 'month', 604800 => 'week', 86400 => 'day', 3600 => 'hour', 60 => 'minute', 1 => 'second');//73446
 			foreach ($tokens as $unit => $text) {
 				if ($time < $unit) continue;
 				$numberOfUnits = floor($time / $unit);
@@ -86,7 +42,8 @@ if (!isset($_SESSION['loggedin'])) {
 		}
 
 		$link = mysqli_connect("localhost", "root", "", "phplogin");
-		$query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, downvotes FROM post ORDER BY log10(abs(upvotes-downvotes) + 1)*sign(upvotes-downvotes)+(unix_timestamp(postts)/300000) DESC";
+		$query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, downvotes FROM post ORDER BY postid DESC";
+		//ORDER BY log10(abs(upvotes-downvotes) + 1)*sign(upvotes-downvotes)+(unix_timestamp(postts)/300000) DESC";
 		$result = mysqli_query($link, $query);
 		if ($link === false) {
 			die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -120,26 +77,25 @@ if (!isset($_SESSION['loggedin'])) {
 
 						<p id="submission-info">
 						<i class="fa fa-user"></i> submitted by <a href="?profile=' . $username . '">' . $username . '</a> <i class="fa fa-calendar"></i> ';
-				echo timeSince(abs(strtotime($postts))) . ' ago,
-				<a href="viewpost.php?postid=' . $id  . '"> add a comment </a> </p></div></div>';
-				
+				echo timeSince($postts). ' ago, 
+				<a href="viewpost.php?postid=' . $id  . '"> Add a Comment </a> </p></div></div>';
 			}
 		}
 		else
 		{
 			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 		}
-
-		$id = $row['id'];
 		?>
-		<?php 
-		if (isset($_SESSION['uname'])) { echo "<input type='hidden' id='username' value='".$_SESSION['uname']."'/>"; }?>
+
+
+		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
+
 		<script>
 		$(document).ready(function() {
 			$('.upvoteinput').click(function() {
-				var id2 = $(this).attr('id');
-				var id = id2.substr(id2.indexOf("-") + 1);
-				var username = $('#username').val();
+				var id2 = $(this).attr('id');//line 64 
+				var id = id2.substr(id2.indexOf("-") + 1);//basically id will have id of the post
+				var username = $('username').val();
 				if (username == null) {
 					return false;
 				}
@@ -156,11 +112,8 @@ if (!isset($_SESSION['loggedin'])) {
 			});
 		});
 		</script>
-	</div>
+
+
+		</div>
 	</body>
 </html>
-
-<!-- <p>Welcome back, 
-	<?=$_SESSION['name']?>
-	!</p> -->
-	

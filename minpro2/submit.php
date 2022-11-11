@@ -25,7 +25,6 @@ if (!isset($_SESSION['loggedin'])) {
 			</div>
 		</nav>
 
-
 <div class="split-pane">
         <h1>Create a new post</h1>
         <form class="register-form" method="POST">
@@ -36,7 +35,6 @@ if (!isset($_SESSION['loggedin'])) {
         </form>
 		<div id="failure"></div>
 		<?php
-		date_default_timezone_set('Asia/Kolkata');
 
     	// this will trigger when submit button click
     	if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submit-post'])){
@@ -49,17 +47,17 @@ if (!isset($_SESSION['loggedin'])) {
             $username = $_SESSION['name'];
             $title = mysqli_real_escape_string($link, $_REQUEST['title']);
             $content = mysqli_real_escape_string($link, $_REQUEST['content']);
+			date_default_timezone_set('Asia/Kolkata');
 			$postts=time();
-            // $subreddit = mysqli_real_escape_string($link, $_REQUEST['subreddit']);
-			// $subreddit = 'all';
-            // $posttype = '1';
+			
+
+            // $subreddit = ;
 			if ($title === '' || $content === '') {
 				echo '<script>document.getElementById("failure").innerHTML = "<p>Title or post content not entered.</p>";</script>';
 			} else {
-	            // attempt insert query execution
+	            //insert query execution
 	            $sql = "INSERT INTO post(postuser,postcontent,posttitle,postts) VALUES ('$username', '$content', '$title', '$postts')";
 	            if(mysqli_query($link, $sql)) {
-	                // echo "Records added successfully.";
 	                echo "<script> alert('Post Submitted Succesfully'); window.location.assign('home.php'); </script>";
 	            } else {
 	                echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
