@@ -116,6 +116,7 @@ if (!isset($_SESSION['loggedin'])) {
 					});
 				});
 		});
+		alert('Post Submitted Succesfully');
 		</script>
 		</div>
 	</body>
