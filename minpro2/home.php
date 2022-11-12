@@ -59,7 +59,7 @@ if (!isset($_SESSION['loggedin'])) {
 				$content=htmlspecialchars($row['postcontent'], ENT_QUOTES, 'UTF-8');
 				$score = htmlspecialchars($row['postscore'], ENT_QUOTES, 'UTF-8');
 				$postts= htmlspecialchars($row['postts'], ENT_QUOTES, 'UTF-8');
-				echo '<div class="home">';
+				echo '<div class="home2">';
 				echo '<div class="row" id="post_' . $id  . '"' . '>
 						<div class="score-container">
 
@@ -77,6 +77,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 						<div class="post-container">
 						<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a> <br>
+						
 						<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a>
 
 						<p id="submission-info">
