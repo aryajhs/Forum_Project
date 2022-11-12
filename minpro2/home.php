@@ -25,6 +25,7 @@ if (!isset($_SESSION['loggedin'])) {
 			</div>
 		</nav>
 		</div>
+		<div class="home">
 	<div class="content-container">
 		<?php
 		
@@ -89,9 +90,8 @@ if (!isset($_SESSION['loggedin'])) {
 		}
 		?>
 
-
 		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
-
+	</div>
 		<script>
 		$(document).ready(
 			function()
