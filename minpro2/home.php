@@ -12,9 +12,8 @@ if (!isset($_SESSION['loggedin'])) {
 	<head>
 		<meta charset="utf-8">
 		<title>Home Page</title>
-		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
+		<link href="style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-		
 	</head>
 	<body class="loggedin">
 		<nav class="navtop">
@@ -26,7 +25,6 @@ if (!isset($_SESSION['loggedin'])) {
 			</div>
 		</nav>
 		</div>
-		<div class="home">
 	<div class="content-container">
 		<?php
 		
@@ -57,6 +55,7 @@ if (!isset($_SESSION['loggedin'])) {
 				$id = htmlspecialchars($row['postid'], ENT_QUOTES, 'UTF-8');
 				$username = htmlspecialchars($row['postuser'], ENT_QUOTES, 'UTF-8');
 				$title = htmlspecialchars($row['posttitle'], ENT_QUOTES, 'UTF-8');
+				$content=htmlspecialchars($row['postcontent'], ENT_QUOTES, 'UTF-8');
 				$score = htmlspecialchars($row['postscore'], ENT_QUOTES, 'UTF-8');
 				$postts= htmlspecialchars($row['postts'], ENT_QUOTES, 'UTF-8');
 				echo '<div class="row" id="post_' . $id  . '"' . '>
@@ -68,16 +67,15 @@ if (!isset($_SESSION['loggedin'])) {
 
 						<span class="score">' . $score . '</span>
 
-						<form method="post" id="votearrow">
+						<form method="post" id="votearrow"  ' . '">
 							<input name="downdoot" class="upvoteinput" type="image" id="downdoot-'. $id . '" value="downdoot" src="images/downvote.gif"/>
 						</form>
 
 						</div>
-					
 
 						<div class="post-container">
-						<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a>
-					
+						<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a> <br>
+						<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a>
 
 						<p id="submission-info">
 						<i class="fa fa-user"></i> submitted by <a href="?profile=' . $username . '">' . $username . '</a> <i class="fa fa-calendar"></i> ';
@@ -93,32 +91,32 @@ if (!isset($_SESSION['loggedin'])) {
 
 
 		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
-	</div>
 
 		<script>
-		$(document).ready(function() {
-			$('.upvoteinput').click(function() {
-				var id2 = $(this).attr('id');//line 64 
-				var id = id2.substr(id2.indexOf("-") + 1);//basically id will have id of the post
-				var username = $('username').val();
-				if (username == null) {
-					return false;
-				}
-				var votevalue = 0;
-				if (id2.startsWith("updoot")) votevalue = 1;
-				if (id2.startsWith("downdoot")) votevalue = -1;
-				$.ajax({
-					type: "POST",
-					url: "vote.php?postid=" + id + "&username=" + username +"&vote=" + votevalue,
-					data: "",
-					success: function(msg){},
-					error: function(msg){}
+		$(document).ready(
+			function()
+			{
+				$('upvoteinput').click(function() //$(this) is used to point at super element variable
+				{
+					var id2 = $(this).attr('id');//line 64 
+					var id = id2.substr(id2.indexOf("-") + 1);//basically id will have id of the post
+					var username = $('username').val(); //session name
+					if (username == null) {
+						return false;
+					}
+					var votevalue = 0;
+					if (id2.startsWith("updoot")) votevalue = 1;
+					if (id2.startsWith("downdoot")) votevalue = -1;
+					$.ajax({
+						type: "POST",
+						url: "vote.php?postid=" + id + "&username=" + username +"&vote=" + votevalue,
+						data: "",
+						success: function(msg){},
+						error: function(msg){}
+					});
 				});
-			});
 		});
 		</script>
-
-
 		</div>
 	</body>
 </html>
