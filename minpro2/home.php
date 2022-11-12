@@ -90,19 +90,19 @@ if (!isset($_SESSION['loggedin'])) {
 		{
 			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 		}
+		$id = $row['id'];
 		?>
-
 		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
 	</div>
 		<script>
 		$(document).ready(
 			function()
 			{
-				$('upvoteinput').click(function() //$(this) is used to point at super element variable
+				$('.upvoteinput').click(function() //$(this) is used to point at super element variable
 				{
 					var id2 = $(this).attr('id');//line 64 
 					var id = id2.substr(id2.indexOf("-") + 1);//basically id will have id of the post
-					var username = $('username').val(); //session name
+					var username = $('#username').val(); //session name
 					if (username == null) {
 						return false;
 					}
@@ -111,14 +111,13 @@ if (!isset($_SESSION['loggedin'])) {
 					if (id2.startsWith("downdoot")) votevalue = -1;
 					$.ajax({
 						type: "POST",
-						url: "vote.php?postid=" + id + "&username=" + username +"&vote=" + votevalue,
+						url: "vote.php?postid=" + id + "username=" + username +"vote=" + votevalue,
 						data: "",
 						success: function(msg){},
 						error: function(msg){}
 					});
 				});
 		});
-		alert('Post Submitted Succesfully');
 		</script>
 		</div>
 	</body>
