@@ -188,7 +188,7 @@ body.loggedin {
 	padding: 25px 0;
 	font-size: 22px;
 	border-bottom: 1px solid #e0e0e3;
-	color: #4a536e;
+	color: rgb(26, 26, 27);
 }
 .content > p, .content > div {
 	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -201,7 +201,7 @@ body.loggedin {
 }
 .content > p table td:first-child, .content > div table td:first-child {
 	font-weight: bold;
-	color: #4a536e;
+	color: #0d0d0d;
 	padding-right: 15px;
 }
 .content > div p {
@@ -531,16 +531,16 @@ top:1px;
 
 .score-container {
   width: 15px;
-  max-height: 70%;
+  max-height: 60%;
   float: left;
   clear: left;
-  color: rgb(100, 100, 100);
+  color: rgb(7, 5, 5);
   font-style: strong;
   text-align: center;
   max-width: 15px;
   display: inline-block;
-  margin-top: 0;
-  line-height: 0;
+  margin-top: 1;
+  line-height: 1;
 }
 
 #votearrow {
@@ -563,17 +563,26 @@ top:1px;
 }
 
 .post-container {
-  margin-top: 15px;
-  margin-left: 25px;
+  margin:0;
+  padding: auto;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 .post-container > p {
-  background-color: rgb(55, 55, 55);
+  background-color:rgb(26, 26, 27);
+  border: 1px solid;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+
   color: rgb(222, 222, 222);
   font-size: medium;
   font-weight: normal;
   margin-bottom: 1px;
   padding-left: 5px;
+  vertical-align: baseline; 
 }
 
 .post-container a {
@@ -759,4 +768,8 @@ margin: 25px 2.5% 0 37.5%;
   color: rgb(255, 0, 0);
   font-weight: 500;
   background-color: inherit;
+}
+.home {
+  align-items: center;
+  width: 850px;
 }

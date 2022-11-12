@@ -12,8 +12,9 @@ if (!isset($_SESSION['loggedin'])) {
 	<head>
 		<meta charset="utf-8">
 		<title>Home Page</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		
 	</head>
 	<body class="loggedin">
 		<nav class="navtop">
@@ -25,6 +26,7 @@ if (!isset($_SESSION['loggedin'])) {
 			</div>
 		</nav>
 		</div>
+		<div class="home">
 	<div class="content-container">
 		<?php
 		
@@ -71,9 +73,11 @@ if (!isset($_SESSION['loggedin'])) {
 						</form>
 
 						</div>
+					
 
 						<div class="post-container">
 						<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a>
+					
 
 						<p id="submission-info">
 						<i class="fa fa-user"></i> submitted by <a href="?profile=' . $username . '">' . $username . '</a> <i class="fa fa-calendar"></i> ';
@@ -89,6 +93,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 
 		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
+	</div>
 
 		<script>
 		$(document).ready(function() {
