@@ -39,7 +39,7 @@ $stmt->close();
 			</div>
 		</nav>
 		<div class="content">
-			<h2>Profile Page</h2>
+			<h2>PROFILE PAGE</h2>
 			<div>
 				<p>Your account details are below:</p>
 				<table>
