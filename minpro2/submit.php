@@ -25,38 +25,25 @@ if (!isset($_SESSION['loggedin'])) {
 			</div>
 		</nav>
 
-<div class="split-pane">
-        <h1>Create a new post</h1>
-        <form class="register-form" method="POST">
-            <input id="post-title" type="text" placeholder="title" name="title"> <br> <br>
-            <textarea id="post-content" type="text" placeholder="text" name="content"></textarea> <br> <br>
-            <!--<input id="post-subreddit" type="text" placeholder="subreddit" name="subreddit">-->
-            <button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-post">Submit Post</button>
-        </form>
-		<div id="failure"></div>
 		<?php
-
-    	// this will trigger when submit button click
-    	if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submit-post'])){
+		if(isset($_POST['submit-post']))
+		{
             $link = mysqli_connect("localhost", "root", "", "phplogin");
             // Check connection
             if($link === false){
                 die("ERROR: Could not connect. " . mysqli_connect_error());
             }
             // Escape user inputs for security
-            $username = $_SESSION['name'];
-            $title = mysqli_real_escape_string($link, $_REQUEST['title']);
-            $content = mysqli_real_escape_string($link, $_REQUEST['content']);
+            $postuser = $_SESSION['name'];
+            $posttitle = mysqli_real_escape_string($link, $_REQUEST['posttitle']);
+            $postcontent = mysqli_real_escape_string($link, $_REQUEST['postcontent']);
 			date_default_timezone_set('Asia/Kolkata');
 			$postts=time();
-			
-
-            // $subreddit = ;
 			if ($title === '' || $content === '') {
 				echo '<script>document.getElementById("failure").innerHTML = "<p>Title or post content not entered.</p>";</script>';
 			} else {
 	            //insert query execution
-	            $sql = "INSERT INTO post(postuser,postcontent,posttitle,postts) VALUES ('$username', '$content', '$title', '$postts')";
+	            $sql = "INSERT INTO post(postuser,postcontent,posttitle,postts) VALUES ('$postuser', '$postcontent', '$posttitle', '$postts')";
 	            if(mysqli_query($link, $sql)) {
 	                echo "<script> alert('Post Submitted Succesfully'); window.location.assign('home.php'); </script>";
 	            } else {
@@ -64,6 +51,90 @@ if (!isset($_SESSION['loggedin'])) {
 	            }
 			}
     	}
+		if(isset($_POST['submit-post']))
+		{
+            $link = mysqli_connect("localhost", "root", "", "phplogin");
+            // Check connection  
+            if($link === false){
+                 die("ERROR: Could not connect. " . mysqli_connect_error());
+            }
+            // Escape user inputs for security
+            $postuser = $_SESSION['name'];
+            $posttitle = mysqli_real_escape_string($link, $_REQUEST['posttitle']);
+            $postimage = mysqli_real_escape_string($link, $_REQUEST['postimage']);
+			date_default_timezone_set('Asia/Kolkata');
+			$postts=time();
+			if ($title === '' || $postimage === '') {
+				echo '<script>document.getElementById("failure").innerHTML = "<p>Title or post content not entered.</p>";</script>';
+			} else {
+	            //insert query execution
+	            $sql = "INSERT INTO post(postuser,postcontent,postimage,posttitle,postts) VALUES ('$postuser','',$postimage, '$posttitle', '$postts')";
+	            if(mysqli_query($link, $sql)) {
+	                echo "<script> alert('Post Submitted Succesfully'); window.location.assign('home.php'); </script>";
+	            } else {
+	                echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+	            }
+			}
+    	}
+
+		echo 
+		'<div class="split-pane">
+        	<h1>Create a new post</h1>
+        	<form class="register-form" method="POST">
+				<div class="content-type">
+					<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="text-post">Text</button>
+					<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="image-post">Image</button>
+				';
+
+	if(isset($_POST['text-post']))
+	{
+		echo '
+		<div class=post-text>
+		<form action="#" method="post">
+           	<input id="post-title" type="text" placeholder="title" name="posttitle"> <br> <br>
+           	<textarea id="post-content" type="text" placeholder="text" name="postcontent"></textarea> <br> <br>
+         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-post">Submit Post</button></form>
+			<div id="failure"></div>
+		</div></div>
+		</form>';
+	}
+
+	if(isset($_POST['image-post']))
+	{
+		echo '
+		<div class=post-text>
+		<form action="#" method="post">
+           	<input id="post-title" type="text" placeholder="title" name="posttitle"> <br> <br>
+           	<input type="file" id="postimage" name="postimage" accept="image/png, image/jpeg , image/jpg"> <br> <br>
+         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-post">Submit Post</button></form>
+			<div id="failure"></div>
+		</div></div>
+		</form>';
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		?>
+		<?php
+
+    	// this will trigger when submit button click
+    	
     	?>
     </div>
 	</body>
