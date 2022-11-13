@@ -141,6 +141,7 @@ p{
 
 
 .navtop {
+   
 	background-color: #2f3947;
 	height: 60px;
 	width: 100%;
@@ -530,10 +531,12 @@ top:1px;
 }
 
 .score-container {
+  
   width: 15px;
   max-height: 60%;
   float: left;
   clear: left;
+  align-items: center;
   color: rgb(7, 5, 5);
   font-style: strong;
   text-align: center;
@@ -541,7 +544,7 @@ top:1px;
   display: inline-block;
   margin-top: 1;
   line-height: 1;
-  padding: 8px, 4px , 8px,0px;
+ padding: 4px, 4px , 8px,0px;  
 }
 
 #votearrow {
@@ -564,6 +567,7 @@ top:1px;
 }
 
 .post-container {
+  border-radius: 20px;
   margin:0;
   padding: auto;
   border: 0;
@@ -764,6 +768,7 @@ margin: 25px 2.5% 0 37.5%;
 
 #submission-info {
   font-size: 75%;
+  border-radius: 20px;
 }
 
 #failure > p {
@@ -773,12 +778,19 @@ margin: 25px 2.5% 0 37.5%;
 }
 .home {
   
+   
+  
   align-items: center;
   width: 850px;
 }
 .home2 {
+
+  
   background: rgb(26, 26,27);
   padding: 0px 0px 0px 40px;
   margin: 0px 0px 0px 10px;
   border-radius: 20px ;
 }
+/* .navbar{
+  position: fixed;
+} */
