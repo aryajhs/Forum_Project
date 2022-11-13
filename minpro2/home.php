@@ -9,17 +9,11 @@ if (!isset($_SESSION['loggedin'])) {
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
+<head>
+		<meta charset="utf-8">
 		<title>Home Page</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
-		<meta name="description" content="Reddit" />
-		<link rel="shortcut icon" href="images/favicon.ico">
-		<link rel="stylesheet" href="styles/style.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body class="loggedin">
 		<nav class="navtop">
@@ -81,15 +75,17 @@ if (!isset($_SESSION['loggedin'])) {
 
 						</div>
 
-						<div class="post-container">
-						<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a> <br>
+						<div class="post-container">';
+						echo '<p id="submission-info">
+						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a> ';
+						echo timeSince($postts). ' ago, ';
+						echo '<br>';
+						echo '<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a> <br>
 						
-						<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a>
+						<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a> ';
+						echo '<br>';
 
-						<p id="submission-info">
-						<i class="fa fa-user"></i> submitted by <a href="?profile=' . $username . '">' . $username . '</a> <i class="fa fa-calendar"></i> ';
-				echo timeSince($postts). ' ago, 
-				<a href="viewpost.php?postid=' . $id  . '"> Add a Comment </a> </p></div></div>';
+				echo '<a href="viewpost.php?postid=' . $id  . '"> <i class="fa fa-comment" ></i> Add a Comment </a> </p></div></div>';
 				echo '</div>';
 			}
 		}
@@ -97,6 +93,7 @@ if (!isset($_SESSION['loggedin'])) {
 		{
 			echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 		}
+		
 		?>
 		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
 	</div>
