@@ -26,7 +26,7 @@ if (!isset($_SESSION['loggedin'])) {
 		</nav>
 
 		<?php
-		if(isset($_POST['submit-post']))
+		if(isset($_POST['submit-posttext']))
 		{
             $link = mysqli_connect("localhost", "root", "", "phplogin");
             // Check connection
@@ -51,7 +51,7 @@ if (!isset($_SESSION['loggedin'])) {
 	            }
 			}
     	}
-		if(isset($_POST['submit-post']))
+		if(isset($_POST['submit-postimage']))
 		{
             $link = mysqli_connect("localhost", "root", "", "phplogin");
             // Check connection  
@@ -65,10 +65,10 @@ if (!isset($_SESSION['loggedin'])) {
 			date_default_timezone_set('Asia/Kolkata');
 			$postts=time();
 			if ($title === '' || $postimage === '') {
-				echo '<script>document.getElementById("failure").innerHTML = "<p>Title or post content not entered.</p>";</script>';
+				echo '<script>document.getElementById("failure").innerHTML = "<p>Title or post content can not be empty.</p>";</script>';
 			} else {
 	            //insert query execution
-	            $sql = "INSERT INTO post(postuser,postcontent,postimage,posttitle,postts) VALUES ('$postuser','',$postimage, '$posttitle', '$postts')";
+	            $sql = "INSERT INTO post(postuser,postimage,posttitle,postts) VALUES ('$postuser','$postimage', '$posttitle', '$postts')";
 	            if(mysqli_query($link, $sql)) {
 	                echo "<script> alert('Post Submitted Succesfully'); window.location.assign('home.php'); </script>";
 	            } else {
@@ -93,7 +93,7 @@ if (!isset($_SESSION['loggedin'])) {
 		<form action="#" method="post">
            	<input id="post-title" type="text" placeholder="title" name="posttitle"> <br> <br>
            	<textarea id="post-content" type="text" placeholder="text" name="postcontent"></textarea> <br> <br>
-         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-post">Submit Post</button></form>
+         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-posttext">Submit Post</button></form>
 			<div id="failure"></div>
 		</div></div>
 		</form>';
@@ -106,7 +106,7 @@ if (!isset($_SESSION['loggedin'])) {
 		<form action="#" method="post">
            	<input id="post-title" type="text" placeholder="title" name="posttitle"> <br> <br>
            	<input type="file" id="postimage" name="postimage" accept="image/png, image/jpeg , image/jpg"> <br> <br>
-         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-post">Submit Post</button></form>
+         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-postimage">Submit Post</button></form>
 			<div id="failure"></div>
 		</div></div>
 		</form>';
