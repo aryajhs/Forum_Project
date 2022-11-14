@@ -20,17 +20,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<title>OmniShea</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
-	<meta name="description" content="Reddit" />
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<link rel="stylesheet" href="styles/style.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
+		<meta charset="utf-8">
+		<title>Viewpost</title>
+		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
 
 
 <?php
@@ -53,11 +47,12 @@
 		<nav class="navtop">
 			<div>
 				<h1>OmniShea</h1>
-				<a href="submit.php"><i class="fa-solid fa-poo"></i>Create Post</a>
+				<a href="submit.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Post</a>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
+        <div><br><br><br></div>
         <div class="home">
             <div class="content-container">
 
@@ -74,26 +69,58 @@
         {
     		while($row = mysqli_fetch_array($result))
             {
-    				echo '<div class="row" id="post_' . htmlspecialchars($row['postid'], ENT_QUOTES, 'UTF-8') . '"><div class="score-container"><form method="POST" id="votearrow"';
-    				echo '"><input name="updoot" class="upvoteinput" type="image" id="updoot-' . htmlspecialchars($row['postid'], ENT_QUOTES, 'UTF-8');
-    			 	echo '" value="updoot" src="images/upvote.gif"/></form><span class="score">' . htmlspecialchars($row['score'], ENT_QUOTES, 'UTF-8');
-    				echo '</span><form method="post" id="votearrow"><input name="downdoot" class="upvoteinput" type="image" id="downdoot-' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8');
-    				echo '" value="downdoot" src="images/downvote.gif"/></form></div><div class="post-container"><p>' . htmlspecialchars($row['posttitle'], ENT_QUOTES, 'UTF-8');
-    				echo '</p><p id="submission-info"><i class="fa fa-user"></i> submitted by <a href="#">' . htmlspecialchars($row['postuser'], ENT_QUOTES, 'UTF-8') . '</a> <i class="fa fa-calendar"></i> ';
-                    echo timeSince(strtotime($row['postts'])) . ' ago</p><p>' . htmlspecialchars($row['content'], ENT_QUOTES, 'UTF-8') . '</p></div></div>';
+            $id = htmlspecialchars($row['postid'], ENT_QUOTES, 'UTF-8');
+			$username = htmlspecialchars($row['postuser'], ENT_QUOTES, 'UTF-8');
+			$title = htmlspecialchars($row['posttitle'], ENT_QUOTES, 'UTF-8');
+			$content=htmlspecialchars($row['postcontent'], ENT_QUOTES, 'UTF-8');
+			$score = htmlspecialchars($row['postscore'], ENT_QUOTES, 'UTF-8');
+			$postts= htmlspecialchars($row['postts'], ENT_QUOTES, 'UTF-8');
+			$postimage=htmlspecialchars($row['postimage'], ENT_QUOTES, 'UTF-8');
+			echo '<div class="home2">';
+			echo '<div class="row" id="post_' . $id  . '"' . '>
+					<div class="score-container">
+
+					<form method="POST" id= "votearrow"  ' . '">
+						<input name="updoot" class="upvoteinput" type="image" id="updoot-'.  $id  . '" value="updoot" src="images/upvote.gif"/>
+					</form>
+
+					<span class="score">' . $score . '</span>
+
+					<form method="post" id="votearrow"  ' . '">
+						<input name="downdoot" class="upvoteinput" type="image" id="downdoot-'. $id . '" value="downdoot" src="images/downvote.gif"/>
+					</form>
+
+					</div>
+
+					<div class="post-container">';
+
+					echo '<p id="submission-info">	
+					<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a> ';	
+					echo timeSince($postts). ' ago, ';			
+					echo '<br>';
+		
+					echo $title . '<br>';
+					if($content!=null)
+                    {
+						echo $content . ' <b>';
+                    }
+					else
+                    {
+						echo '<img src="'.$postimage.'" width="500" height="600">';
+						echo '<br>';
+					}
     		}
 
         }
         else echo "ERROR: Could not able to execute $query. " . mysqli_error($link);
         ?>
 
-        <!-- posting new comments -->
+        <!--------------------------------------------------POSTING NEW COMMENTS------------------------------------------------------------------->
 
         <?php
-        if (isset($_SESSION['logged_in'])) {
-            echo '<div class="post-comment"><form id="comment-form" method="POST"><textarea id="comment-content" type="text" placeholder="write your comment" name="comment" rows="5" cols="150"></textarea>
-                    <button type="submit" class="btnblue" id="sign-up-in-btn" value="Post comment" name="post-comment">Post comment</button></form></div><div id="failure"></div>';
-		}
+        echo "<br><br><br><br>";
+        echo '<div class="post-comment"><form id="comment-form" method="POST"><textarea id="comment-content" type="text" placeholder="Write Your Comment" name="comment" rows="5" cols="150"></textarea>
+                <button type="submit" class="btnblue" id="sign-up-in-btn"  name="post-comment"> Post comment </button></form></div><div id="failure"></div>';
     	if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['post-comment'])){
             $link = mysqli_connect("localhost", "root", "", "phplogin");
             // Check connection
@@ -103,12 +130,15 @@
             // Escape user inputs for security
             $commentuser = $_SESSION['name'];
             $postid = $_REQUEST['postid'];
+            date_default_timezone_set('Asia/Kolkata');
+			$commentts=time();
             $comment = mysqli_real_escape_string($link, $_REQUEST['comment']);
+
             // attempt insert query execution
             if ($comment === '') {
 				echo "<script>document.getElementById('failure').innerHTML = '<p>You didn't write anything in comment field.</p>';</script>";
 			} else {
-                $sql = "INSERT INTO comment (commentuser, postid, comment) VALUES ('$commentuser', '$postid', '$comment')";
+                $sql = "INSERT INTO comment (commentuser, postid, comment,commentts) VALUES ('$commentuser', '$postid', '$comment','$commentts')";
                 if(mysqli_query($link, $sql)) {
                     // echo "Records added successfully.";
                     $msg = 'Comment submitted successfully!';
@@ -119,40 +149,57 @@
                 }
             }
     	}
+        ?>
 
-    	?>
+        <!-----------------------------------------------------PRINTING ALL COMMENTS-------------------------------------------------------------->
+        
         <?php
+        
+        echo "<br><br><br><br>";
 		$link = mysqli_connect("localhost", "root", "", "phplogin");
-        $postid = $_REQUEST['postid'];
-        $postid = mysqli_real_escape_string($link, $postid);
-		$query = "SELECT * FROM comment WHERE postid=$postid";
+        $postid = mysqli_real_escape_string($link, $_REQUEST['postid']);
+		$query = "SELECT * FROM comment WHERE postid=$postid ORDER BY commentid DESC";
+        
 		$result = mysqli_query($link, $query);
 		if ($link === false) {
 			die("ERROR: Could not connect. " . mysqli_connect_error());
 		}
         if(mysqli_query($link, $query)) {
+
             if ($result->num_rows == 0) {
-                echo "<div class='empty-comments'><p>there doesn't seem to be anything here yet</p></div>";
+                echo "<div class='empty-comments'><p>There doesn't seem to be anything here yet</p></div>";
             }
             else {
-                echo '<div class="comments-container">';
-        		while($row = mysqli_fetch_array($result)){
+                echo '<div class="home2">';
+        		while($row = mysqli_fetch_array($result))
+                {
                     $postid = htmlspecialchars($row['postid'], ENT_QUOTES, 'UTF-8');
                     $commentuser = htmlspecialchars($row['commentuser'], ENT_QUOTES, 'UTF-8');
-                    $score = htmlspecialchars($row['score'], ENT_QUOTES, 'UTF-8');
                     $comment = htmlspecialchars($row['comment'], ENT_QUOTES, 'UTF-8');
-                    echo '<div class="comment-row" id="comment_' . $postid;
-                    echo '"><div class="comment-score-container"><form method="POST" id="votearrow"><input name="updoot" class="upvoteinput" type="image" id="updoot-';
-                    echo $id . '" value="updoot" src="images/upvote.gif"/></form><form method="post" id="votearrow"><input name="downdoot" class="upvoteinput" type="image" id="downdoot-';
-                    echo $id . '" value="downdoot" src="images/downvote.gif"/></form></div><div class="comments-container" id="comment-title-container"><p id="submission-info"><a id="comment-title-container" href="profile?user=';
-                    echo $postuser . '"> ' . $postuser;
-                    echo timeSince(strtotime($row['postts'])) . ' ago</p></div><div class="comments-container" id="comment-content-container"><p>' . $comment . '</p></div></div>';
+                    $commentts = htmlspecialchars($row['commentts'], ENT_QUOTES, 'UTF-8');
+
+                    echo '<div class="comment-container">';
+						
+						echo '<p id="submission-info">
+						
+						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $commentuser . '</a> ';
+						
+						echo timeSince($commentts). ' ago, ';
+						
+						echo '<br>';
+						 
+							echo '<p>'. $comment .'</p>';
+							echo '<br>';
+						
         		}
             }
         } else {
 			echo "ERROR: Could not able to execute $query. " . mysqli_error($link);
 		}
+
+
         ?>
+
     </div>
     </div>
 </body>

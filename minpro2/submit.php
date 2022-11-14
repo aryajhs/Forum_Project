@@ -79,6 +79,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 		echo 
 		'<div class="split-pane">
+		<div><br><br><br></div>
         	<h1>Create a new post</h1>
         	<form class="register-form" method="POST">
 				<div class="content-type">
