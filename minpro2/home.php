@@ -101,7 +101,7 @@ if (!isset($_SESSION['loggedin'])) {
 							echo '<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a> ';
 							echo '<br>';}
 						else {
-							echo '<a href="viewpost.php?postid=' . $id . '"><img src="'.$postimage.'" width="500" height="600"></a> ';
+							echo '<a href="viewpost.php?postid=' . $id . '"><img src="'.$postimage.'" width="250" height="300"></a> ';
 							echo '<br>';
 							}
 						

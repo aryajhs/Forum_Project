@@ -596,9 +596,11 @@ top:1px;
 }
 
 .post-container a {
+  
+  text-size-adjust: 12;
   text-decoration: none;
   margin: 0px,8px;
-  color: rgb(130, 130, 130);
+  color: rgb(255, 255, 255);
 }
 
 .post-container a:visited {
@@ -783,7 +785,7 @@ margin: 25px 2.5% 0 37.5%;
 }
 .home {
   
-   margin-top: 50px;
+   margin-top: 100px;
   position: absolute;
   left: 13em;
   
