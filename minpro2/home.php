@@ -95,8 +95,9 @@ if (!isset($_SESSION['loggedin'])) {
 					
 						echo '<br>';
 						 
-						
-						echo '<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a> <br>';
+						echo "<div class='title'>";
+						echo ' <a href="viewpost.php?postid=' . $id . '"><h3>' . $title . '</h3> </a>  <br>';
+						echo "</div>";
 						if($content!=null) {
 							echo '<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a> ';
 							echo '<br>';}

@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
-    font-size: 16px;
+    /* font-size: 16px; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -581,17 +581,17 @@ top:1px;
 }
 
 .post-container > p {
-  background-color:rgb(26, 26, 27);
+   
   border: 1px transparent;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   overflow: hidden;
   position: relative;
-
+border-radius: 20px;
   color: rgb(222, 222, 222);
   font-size: medium;
   font-weight: normal;
   margin-bottom: 1px;
-  padding-left: 5px;
+  /* padding-left: 5px; */
   vertical-align: baseline; 
 }
 
@@ -807,4 +807,19 @@ border-style: solid;
 } */
 .ninja{
   background-color: #000;
+}
+.title{
+  font-size: 20px;
+  display: inline-block;
+ margin: 10px,0px,0px,0px;
+  position: relative;
+  padding-right: 5px;
+width: 250px;
+height: 100%;
+top:-10px;
+float: left;
+ 
+}
+.title > h3{
+  font-size:30px ;
 }
