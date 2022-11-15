@@ -14,6 +14,7 @@ if (!isset($_SESSION['loggedin'])) {
 		<title>Home Page</title>
 		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	</head>
 	<body class="loggedin">
 		<div class="ninja">
@@ -71,11 +72,15 @@ if (!isset($_SESSION['loggedin'])) {
 							<input name="updoot" class="upvoteinput" type="image" id="updoot-'.  $id  . '" value="updoot" src="images/upvote.gif"/>
 						</form>
 
+						<br>
+
 						<span class="score">' . $score . '</span>
 
 						<form method="post" id="votearrow"  ' . '">
 							<input name="downdoot" class="upvoteinput" type="image" id="downdoot-'. $id . '" value="downdoot" src="images/downvote.gif"/>
 						</form>
+
+						<br>
 
 						</div>
 
@@ -117,29 +122,26 @@ if (!isset($_SESSION['loggedin'])) {
 		?>
 		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
 	</div>
-		<script>
-		$(document).ready(
-			function()
-			{
-				$('.upvoteinput').click(function() //$(this) is used to point at super element variable
-				{
-					var id2 = $(this).attr('id');//line 64 
-					var id = id2.substr(id2.indexOf("-") + 1);//basically id will have id of the post
-					var username = $('#username').val(); //session name
-					if (username == null) {
-						return false;
-					}
-					var votevalue = 0;
-					if (id2.startsWith("updoot")) votevalue = 1;
-					if (id2.startsWith("downdoot")) votevalue = -1;
-					$.ajax({
-						type: "POST",
-						url: "vote.php?postid=" + id + "username=" + username +"vote=" + votevalue,
-						data: "",
-						success: function(msg){},
-						error: function(msg){}
-					});
+	<script>
+		$(document).ready(function() {
+			$('.upvoteinput').click(function() { //line 72 and 80....upvotee and downvote class
+				var id2 = $(this).attr('id');
+				var id = id2.substr(id2.sindexOf("-") + 1);
+				var username = $('#username').val();
+				if (username == null) {
+					return false;
+				}
+				var votevalue = 0;
+				if (id2.startsWith("updoot")) votevalue = 1;
+				if (id2.startsWith("downdoot")) votevalue = -1;
+				$.ajax({
+					type: "POST",
+					url: "vote.php?postid=" + id + "&username=" + username +"&vote=" + votevalue,
+					data: "",
+					success: function(msg){},
+					error: function(msg){}
 				});
+			});
 		});
 		</script>
 		</div>
