@@ -29,6 +29,7 @@ if (!isset($_SESSION['loggedin'])) {
 		</nav>
 
 		</div>
+	 
 		<div class="home">
 	<div class="content-container">
 		<?php
@@ -64,6 +65,7 @@ if (!isset($_SESSION['loggedin'])) {
 				$score = htmlspecialchars($row['postscore'], ENT_QUOTES, 'UTF-8');
 				$postts= htmlspecialchars($row['postts'], ENT_QUOTES, 'UTF-8');
 				$postimage=htmlspecialchars($row['postimage'], ENT_QUOTES, 'UTF-8');
+				
 				echo '<div class="home2">';
 				echo '<div class="row" id="post_' . $id  . '"' . '>
 						<div class="score-container">
@@ -99,19 +101,25 @@ if (!isset($_SESSION['loggedin'])) {
 						echo ' <a href="viewpost.php?postid=' . $id . '"><h3>' . $title . '</h3> </a>  <br>';
 						echo "</div>";
 						if($content!=null) {
+							 
+						echo "<div class='pcontent'>";
 							echo '<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a> ';
-							echo '<br>';}
+							echo '<br>';
+							echo "</div>";}
 						else {
+							echo "<div class='pimage'>";
 							echo '<a href="viewpost.php?postid=' . $id . '"><img src="'.$postimage.'" width="250" height="300"></a> ';
 							echo '<br>';
+							echo "</div>";
 							}
 						
 						
 						
 						
 						
-
+							echo "<div class='pimage'>";
 				echo '<a href="viewpost.php?postid=' . $id  . '"> <i class="fa fa-comment" ></i> Add a Comment </a> </p></div></div>';
+				echo '</div>';
 				echo '</div>';
 			}
 		}

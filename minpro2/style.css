@@ -1,12 +1,13 @@
 * {
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     /* font-size: 16px; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  
 }
-body {
-    background-color: 
+.body {
+    background-color: lavender;
 }
 
 
@@ -146,7 +147,7 @@ p{
   top:0;
   z-index: 1;
    padding: 0px,0px,0px,0px;
-	background-color: #2f3947;
+	background-color: #32373e;
 	height: 60px;
 	width: 100%;
 	border: 0;
@@ -293,7 +294,8 @@ body.loggedin {
 }
 
 body {
-  background-color: rgb(42, 42, 42);
+  /* background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/) ; */
+  background-color: rgb(15, 12, 12);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -586,6 +588,7 @@ top:1px;
   /* margin-bottom: 10px; */
   overflow: hidden;
   position: relative;
+
 border-radius: 20px;
   color: rgb(222, 222, 222);
   font-size: medium;
@@ -596,10 +599,11 @@ border-radius: 20px;
 }
 
 .post-container a {
-  
-  text-size-adjust: 12;
   text-decoration: none;
-  margin: 0px,8px;
+  text-align: left;
+  margin-top: 10px;
+   padding-top: 20px;
+   
   color: rgb(255, 255, 255);
 }
 
@@ -809,17 +813,33 @@ border-style: solid;
   background-color: #000;
 }
 .title{
+  box-sizing: border-box;
   font-size: 20px;
   display: inline-block;
- margin: 10px,0px,0px,0px;
+ overflow: auto;
   position: relative;
-  padding-right: 5px;
-width: 250px;
-height: 100%;
-top:-10px;
-float: left;
+  
+  /* padding-right: 5px; */
  
+ 
+top:-10px;
+float: left; 
+  
 }
 .title > h3{
   font-size:30px ;
 }
+.pcontent {
+  padding-left: 10px;
+  text-align: left;
+  word-wrap: break-word;
+  margin-top: 90px;
+  margin-left: 20px;
+}
+.pimage{
+  text-align: center;
+  word-wrap: break-word;
+  margin-top: 90px;
+  margin-left: 20px;
+}
+ 
