@@ -64,11 +64,36 @@ if (!isset($_SESSION['loggedin'])) {
             $postimage = mysqli_real_escape_string($link, $_REQUEST['postimage']);
 			date_default_timezone_set('Asia/Kolkata');
 			$postts=time();
-			if ($title === '' || $postimage === '') {
+			if ($posttitle === '' || $postimage === '') {
 				echo '<script>document.getElementById("failure").innerHTML = "<p>Title or post content can not be empty.</p>";</script>';
 			} else {
 	            //insert query execution
 	            $sql = "INSERT INTO post(postuser,postimage,posttitle,postts) VALUES ('$postuser','$postimage', '$posttitle', '$postts')";
+	            if(mysqli_query($link, $sql)) {
+	                echo "<script> alert('Post Submitted Succesfully'); window.location.assign('home.php'); </script>";
+	            } else {
+	                echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+	            }
+			}
+    	}
+		if(isset($_POST['submit-postvideo']))
+		{
+            $link = mysqli_connect("localhost", "root", "", "phplogin");
+            // Check connection  
+            if($link === false){
+                 die("ERROR: Could not connect. " . mysqli_connect_error());
+            }
+            // Escape user inputs for security
+            $postuser = $_SESSION['name'];
+            $posttitle = mysqli_real_escape_string($link, $_REQUEST['posttitle']);
+            $postvideo = mysqli_real_escape_string($link, $_REQUEST['postvideo']);
+			date_default_timezone_set('Asia/Kolkata');
+			$postts=time();
+			if ($posttitle === '' || $postvideo === '') {
+				echo '<script>document.getElementById("failure").innerHTML = "<p>Title or post content can not be empty.</p>";</script>';
+			} else {
+	            //insert query execution
+	            $sql = "INSERT INTO post(postuser,postvideo,posttitle,postts) VALUES ('$postuser','$postvideo', '$posttitle', '$postts')";
 	            if(mysqli_query($link, $sql)) {
 	                echo "<script> alert('Post Submitted Succesfully'); window.location.assign('home.php'); </script>";
 	            } else {
@@ -85,6 +110,7 @@ if (!isset($_SESSION['loggedin'])) {
 				<div class="content-type">
 					<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="text-post">Text</button>
 					<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="image-post">Image</button>
+					<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="video-post">Video</button>
 				';
 
 	if(isset($_POST['text-post']))
@@ -92,7 +118,7 @@ if (!isset($_SESSION['loggedin'])) {
 		echo '
 		<div class=post-text>
 		<form action="#" method="post">
-           	<input id="post-title" type="text" placeholder="title" name="posttitle"> <br> <br>
+           	<input id="posttitle" type="text" placeholder="title" name="posttitle"> <br> <br>
            	<textarea id="post-content" type="text" placeholder="text" name="postcontent"></textarea> <br> <br>
          	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-posttext">Submit Post</button></form>
 			<div id="failure"></div>
@@ -105,9 +131,22 @@ if (!isset($_SESSION['loggedin'])) {
 		echo '
 		<div class=post-text>
 		<form action="#" method="post">
-           	<input id="post-title" type="text" placeholder="title" name="posttitle"> <br> <br>
+           	<input id="posttitle" type="text" placeholder="title" name="posttitle"> <br> <br>
            	<input type="file" id="postimage" name="postimage" accept="image/png, image/jpeg , image/jpg"> <br> <br>
          	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-postimage">Submit Post</button></form>
+			<div id="failure"></div>
+		</div></div>
+		</form>';
+	}
+
+	if(isset($_POST['video-post']))
+	{
+		echo '
+		<div class=post-text>
+		<form action="#" method="post">
+           	<input id="posttitle" type="text" placeholder="title" name="posttitle"> <br> <br>
+           	<input type="file" id="postvideo" name="postvideo" accept="video/mp4"> <br> <br>
+         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-postvideo">Submit Post</button></form>
 			<div id="failure"></div>
 		</div></div>
 		</form>';

@@ -15,6 +15,7 @@ if (!isset($_SESSION['loggedin'])) {
 		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 	</head>
 	<body class="loggedin">
 		<div class="ninja">
@@ -47,8 +48,14 @@ if (!isset($_SESSION['loggedin'])) {
 		}
 
 		$link = mysqli_connect("localhost", "root", "", "phplogin");
-		$query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,downvotes FROM post ORDER BY postid DESC";
+		$query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,downvotes,postvideo FROM post ORDER BY postid DESC";
 		//ORDER BY log10(abs(upvotes-downvotes) + 1)*sign(upvotes-downvotes)+(unix_timestamp(postts)/300000) DESC";
+
+		
+		
+
+		
+
 		$result = mysqli_query($link, $query);
 		if ($link === false) {
 			die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -64,6 +71,11 @@ if (!isset($_SESSION['loggedin'])) {
 				$score = htmlspecialchars($row['postscore'], ENT_QUOTES, 'UTF-8');
 				$postts= htmlspecialchars($row['postts'], ENT_QUOTES, 'UTF-8');
 				$postimage=htmlspecialchars($row['postimage'], ENT_QUOTES, 'UTF-8');
+				$postvideo=htmlspecialchars($row['postvideo'], ENT_QUOTES, 'UTF-8');
+
+				$savequery="SELECT * from save where username = '$username' and postid='$id'";
+				$saveresult= mysqli_query($link, $savequery);
+
 				echo '<div class="home2">';
 				echo '<div class="row" id="post_' . $id  . '"' . '>
 						<div class="score-container">
@@ -71,6 +83,7 @@ if (!isset($_SESSION['loggedin'])) {
 						<form method="POST" id= "votearrow"  ' . '">
 							<input name="updoot" class="upvoteinput" type="image" id="updoot-'.  $id  . '" value="updoot" src="images/upvote.gif"/>
 						</form>
+
 
 						<br>
 
@@ -91,18 +104,27 @@ if (!isset($_SESSION['loggedin'])) {
 						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a> ';
 						
 						echo timeSince($postts). ' ago, ';
-						
+
+
+
+						// if ($saveresult->num_rows == 0) {
+						// 	echo "<div class='save'><></div>";////////////////////////////////////////////////////
+						// }
 					
 						echo '<br>';
+
 						 
-						echo "<div class='title'>";
-						echo ' <a href="viewpost.php?postid=' . $id . '"><h3>' . $title . '</h3> </a>  <br>';
-						echo "</div>";
-						if($content!=null) {
+						
+						echo '<a href="viewpost.php?postid=' . $id . '">' . $title . ' </a> <br>';
+						if($postimage=='' and $postvideo=='') {
 							echo '<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a> ';
 							echo '<br>';}
-						else {
+						else if($content=='' and $postvideo=='') {
 							echo '<a href="viewpost.php?postid=' . $id . '"><img src="'.$postimage.'" width="250" height="300"></a> ';
+							echo '<br>';
+							}
+						else if($content=='' and $postimage=='') {
+							echo '<a href="viewpost.php?postid=' . $id . '"><video src="'.$postvideo.'" width="720" height="450"></a> ';
 							echo '<br>';
 							}
 						
