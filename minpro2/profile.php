@@ -39,27 +39,28 @@ $stmt->close();
       </div>
     </nav>
     <div class="content">
-      <h2>PROFILE PAGE</h2>
-      <div>
-        <p>Your account details are below:</p>
+      <div class="imgbox">
+    <img src="omni2.png"></image>
+    </div>
+      <div class="userdetails">
         <table>
           <tr>
-            <td>Username:</td>
             <td><?=$_SESSION['name']?></td>
           </tr>
           <tr>
-            <td>Password:</td>
-            <td><?=$password?></td>
-          </tr>
-          <tr>
-            <td>Email:</td>
             <td><?=$email?></td>
           </tr>
         </table>
       </div>
     </div>
-
+    <div class="home">
+      <div class="profile-content">
+        <h1>My Posts</h1>
+      <div class="content-container">
+        
     <?php
+   
+
     function timeSince($times) {
       date_default_timezone_set('Asia/Kolkata');
       $time = time() - $times; // to get the time since that moment
@@ -74,7 +75,7 @@ $stmt->close();
     }
     $name  = $_SESSION['name'] ;
     $link = mysqli_connect("localhost", "root", "", "phplogin");
-    $query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,downvotes FROM post WHERE postuser = '$name' ORDER BY postid DESC";
+    $query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,downvotes,postvideo FROM post WHERE postuser = '$name' ORDER BY postid DESC";
     //ORDER BY log10(abs(upvotes-downvotes) + 1)*sign(upvotes-downvotes)+(unix_timestamp(postts)/300000) DESC"; 
     $result = mysqli_query($link, $query);
     if ($link === false) {
