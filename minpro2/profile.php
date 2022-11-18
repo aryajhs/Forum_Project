@@ -114,7 +114,6 @@ $stmt->close();
             <i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a> ';
             
             echo timeSince($postts). ' ago, ';
-            
           
           	echo '<br>';
 

@@ -18,6 +18,9 @@ if(isset($_POST['SignUp']))
     if(mysqli_query($con,$query)) { echo "<script> alert('Registered Succesfully') </script>"; header('Location: index.html'); }
     else echo "error";
 }
+else{
+    echo "error";
+}
 ?>
 <!-- reference operator
 class 

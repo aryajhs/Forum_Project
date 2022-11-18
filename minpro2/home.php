@@ -98,7 +98,7 @@ if (!isset($_SESSION['loggedin'])) {
 						
 						echo '<p id="submission-info">
 						
-						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a> ';
+						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a> <i class="fa-regular fa-circle-bookmark"></i>';
 						
 						echo timeSince($postts). ' ago, ';
 

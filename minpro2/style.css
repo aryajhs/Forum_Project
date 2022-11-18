@@ -295,7 +295,13 @@ body.loggedin {
 
 body {
   /* background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/) ; */
+  background-position:  right;
+  background-size: cover;
+  position: relative;
+  background-image: url(images/home.jpg);
   background-color: rgb(15, 12, 12);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
 }
 
