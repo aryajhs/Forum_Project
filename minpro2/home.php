@@ -72,6 +72,7 @@ if (!isset($_SESSION['loggedin'])) {
 				$score = htmlspecialchars($row['postscore'], ENT_QUOTES, 'UTF-8');
 				$postts= htmlspecialchars($row['postts'], ENT_QUOTES, 'UTF-8');
 				$postimage=htmlspecialchars($row['postimage'], ENT_QUOTES, 'UTF-8');
+				$postvideo=htmlspecialchars($row['postvideo'], ENT_QUOTES, 'UTF-8');
 				echo '<div class="home2">';
 				echo '<div class="row" id="post_' . $id  . '"' . '>
 						<div class="score-container">
@@ -101,6 +102,8 @@ if (!isset($_SESSION['loggedin'])) {
 						
 						echo timeSince($postts). ' ago, ';
 
+						// echo '<form action="" method="POST"><button type="submit" class="btnblue" id="sign-up-in-btn" value="Save" name="save">Video</button></form>"';
+
 
 
 						// if ($saveresult->num_rows == 0) {
@@ -110,21 +113,18 @@ if (!isset($_SESSION['loggedin'])) {
 						echo '<br>';
 
 						 
-						echo "<div class='title'>";
-						echo ' <a href="viewpost.php?postid=' . $id . '"><h3>' . $title . '</h3> </a>  <br>';
-						echo "</div>";
-						if($content!=null) {
-							echo '<a href="viewpost.php?postid=' . $id . '">' . $content . ' </a> ';
-							echo '<br>';}
-						else {
-							echo '<a href="viewpost.php?postid=' . $id . '"><img src="'.$postimage.'" width="250" height="300"></a> ';
-							echo '<br>';
-							echo "</div>";
-							}
-						else if($content=='' and $postimage=='') {
-							echo '<a href="viewpost.php?postid=' . $id . '"><video src="'.$postvideo.'" width="720" height="450"></a> ';
-							echo '<br>';
-							}
+						echo $title .'<br>';
+					if($content) {
+                        echo  $content ;
+                        echo '<br>';}
+                    else if($postvideo) {
+                            echo '<video width="720" height="450" controls><source src="'.$postvideo.'"  type="video/mp4"></video>';
+                            echo '<br>';
+                            }//width="320" height="240" //autoplay allows to play automatically
+                    else if($postimage) {
+                        echo '<a href="viewpost.php?postid=' . $id . '"><img src="'.$postimage.'" width="250" height="300"></a> ';
+                        echo '<br>';
+                    }  
 						
 						
 						
