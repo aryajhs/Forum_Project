@@ -1,3 +1,4 @@
+
 <?php
 // We need to use sessions, so you should always start sessions using the below code.
 session_start();
@@ -53,11 +54,51 @@ $stmt->close();
         </table>
       </div>
     </div>
+<<<<<<< Updated upstream
     <div class="home">
       <div class="profile-content">
         <h1>My Posts</h1>
       <div class="content-container">
         
+=======
+
+    <div class="container">
+    <div class="rigth-sidebar">
+       <div class="sidebar-news">
+        <img src="./images/more.png" alt="" class="info-icon">
+        <h3>Trending news</h3>
+        <a href="#">High demands for skilled Coder for teaching</a>
+        <span>1d ago &middot; 10,934 readers</span>
+
+        <a href="#">High demands for skilled Maths for teaching</a>
+        <span>1d ago &middot; 10,934 readers</span>
+        <a href="#" class="read-more-link">Read more</a>
+       </div>
+       <div class="sidebar-ad">
+        <small>Ad &middot; &middot;&middot;</small>
+        <p>Master the 5 priciples of web design</p>
+        <div>
+          <img src="./images/dark.png" alt="">
+          <img src="./images/dark2.png" alt="">
+        </div>
+        <b>Brand  and Demand in Xiaomi</b>
+        <a href="#" class="ad-link">Learn more</a>
+       </div>
+       <div class="sidebar-usefull-links">
+        <a href="#">About</a>
+        <a href="#">Accessiblity</a>
+        <a href="#">Help Center</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">More</a>
+        <div class="copyright-msg">
+          <img src="./images/easy.png" alt="" height="90px" width="100px">
+          <p>Easy to find &#169; 2022 .All right reservedea</p>
+        </div>
+       </div>
+    </div>
+
+
+>>>>>>> Stashed changes
     <?php
    
 
@@ -75,7 +116,11 @@ $stmt->close();
     }
     $name  = $_SESSION['name'] ;
     $link = mysqli_connect("localhost", "root", "", "phplogin");
+<<<<<<< Updated upstream
     $query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,downvotes,postvideo FROM post WHERE postuser = '$name' ORDER BY postid DESC";
+=======
+    $query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,postvideo,downvotes FROM post WHERE postuser = '$name' ORDER BY postid DESC";
+>>>>>>> Stashed changes
     //ORDER BY log10(abs(upvotes-downvotes) + 1)*sign(upvotes-downvotes)+(unix_timestamp(postts)/300000) DESC"; 
     $result = mysqli_query($link, $query);
     if ($link === false) {
@@ -93,6 +138,7 @@ $stmt->close();
         $postts= htmlspecialchars($row['postts'], ENT_QUOTES, 'UTF-8');
         $postimage=htmlspecialchars($row['postimage'], ENT_QUOTES, 'UTF-8');
         $postvideo=htmlspecialchars($row['postvideo'], ENT_QUOTES, 'UTF-8');
+
         echo '<div class="home2">';
         echo '<div class="row" id="post_' . $id  . '"' . '>
             <div class="score-container">
