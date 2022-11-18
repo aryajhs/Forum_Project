@@ -1,0 +1,34 @@
+problem in upvoting and downvoting(not working)
+vote table columns -: username postid score.
+
+minpro2/home.php(line 152 - 176)
+
+<script>
+    $(document).ready(
+      function()
+      {
+        $('.upvoteinput').click(function() //$(this) is used to point at super element variable
+        {
+          var id2 = $(this).attr('id');//line 64 
+          var id = id2.substr(id2.indexOf("-") + 1);//basically id will have id of the post
+          var username = $('#username').val(); //session name
+          if (username == null) {
+            return false;
+          }
+          var votevalue = 0;
+          if (id2.startsWith("updoot")) votevalue = 1;
+          if (id2.startsWith("downdoot")) votevalue = -1;
+          $.ajax({
+            type: "POST",
+            url: "vote.php?postid=" + id + "username=" + username +"vote=" + votevalue,
+            data: "",
+            success: function(msg){},
+            error: function(msg){}
+          });
+        });
+    });
+   </script>
+
+
+
+minpro2/vote.php(line 152 - 176)
