@@ -59,7 +59,7 @@ p{
   position: relative;
   width: 350px;
   height: 600px;
-  top: 400px;
+  top: 200px;
   left: 950px;
   border-radius: 20px;
   box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
@@ -74,7 +74,7 @@ p{
   position: absolute;
     width: 150px;
     height: 145px;
-    top: 300px;
+    top: 120px;
     left: 79%;
     background: #fff;
     border-radius: 20px;
@@ -99,7 +99,7 @@ p{
   width: 1250px;
   height: 120x;
   right: -150px;
-  top: -400px;
+  top: -600px;
 
 }
 
