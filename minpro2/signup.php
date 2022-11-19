@@ -12,18 +12,10 @@ if ( mysqli_connect_errno() ) {
 $name=$_POST['username'];
 $password=$_POST['password'];
 $email=$_POST['email'];
-$query = "INSERT INTO accounts VALUES('','$name','$password','$email')";
+$query = "INSERT INTO accounts VALUES('','$name','$password','$email','','')";
 if(isset($_POST['SignUp']))
 {
     if(mysqli_query($con,$query)) { echo "<script> alert('Registered Succesfully') </script>"; header('Location: index.html'); }
     else echo "error";
 }
-else{
-    echo "error";
-}
 ?>
-<!-- reference operator
-class 
-object
-exception handling
-file handling -->
