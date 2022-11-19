@@ -126,15 +126,22 @@ if (!isset($_SESSION['loggedin'])) {
             $row=mysqli_fetch_array($result);
             $username=$row['username'];
             $password=$row['password'];
-            $email=$row['email'];  
+            $email=$row['email'];
+            $profilepic=$row['profilepic'];
+            $bio=$row['bio'];
 
-            if(!isset($_POST['submit']))
+
+            if(isset($_POST['submit']))
             {
                 $name1=mysqli_real_escape_string($link, $_POST['name']);
                 $password1=mysqli_real_escape_string($link, $_POST['password']);
                 $email1=mysqli_real_escape_string($link, $_POST['email']);
-                $updatequery= "UPDATE accounts SET username='$name1',email='$email1',password='$password' WHERE name='$name' ";
+                $bio1=mysqli_real_escape_string($link, $_POST['bio']);
+                $profilepic1=mysqli_real_escape_string($link, $_POST['profilepic']);
+                
+                $updatequery= "UPDATE accounts SET username='$name1',email='$email1',password='$password1',bio='$bio1',profilepic='$profilepic1' WHERE username='$name' ";
                 mysqli_query($link,$updatequery);
+                header('Location: profile.php');
             }
 
         ?>
@@ -145,16 +152,23 @@ if (!isset($_SESSION['loggedin'])) {
     </div>
 
     <div class="edit-main-con">
-        <form action="" method="POST">
+        <form action="#" method="POST">
+        <div class="edit-image-con">
+            <img src="<?php echo $profilepic ?>" alt="">
+            <button>Change Profile<span><input type="file" id="profilepic" name="profilepic" accept="image/png, image/jpeg , image/jpg"></span></button>
+        </div>
             <div class="edit-profile-con">
                 <label >name</label>
-                    <input type="text" value="<?php echo $_SESSION['name'];?>" name="name">
+                    <input type="text" name="name" value="<?php echo $_SESSION['name'];?>" >
                     <br><br><br>
                 <label >email</label>
-                   <input type="email" value="<?php echo $email ?>" name="email">
+                   <input type="email" name="email" value="<?php echo $email ?>" >
                    <br><br><br>
                 <label >password</label>
-                    <input type="text" value="<?php echo $password ?>" name="password">
+                    <input type="text" name="password" value="<?php echo $password ?>" >
+                    <br><br><br>
+                <label >bio</label>
+                    <input type="text" name="bio"value="<?php echo $bio ?>" >
                     <br><br><br>
                 <button class="button" type="submit" name="submit">Update Profile</button>
             </div>
@@ -162,3 +176,4 @@ if (!isset($_SESSION['loggedin'])) {
     </div>
 </body>
 </html>
+
