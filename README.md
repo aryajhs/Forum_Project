@@ -4,7 +4,7 @@ Login and registration authentication <br>
 Post creation and Submission<br>
 Viewpost in home section<br>
 Your Info and your submission in Profile page<br>
-Can add image as well <br>
+Can add image & add vidoe as well <br>
 Comment section functionality<br>
 Logout functionality<br>
 
