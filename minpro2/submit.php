@@ -12,7 +12,7 @@ if (!isset($_SESSION['loggedin'])) {
 	<head>
 		<meta charset="utf-8">
 		<title>Home Page</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 	<body class="loggedin">
@@ -24,7 +24,8 @@ if (!isset($_SESSION['loggedin'])) {
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 			</div>
 		</nav>
-
+</body>
+<body class="viewpost">
 		<?php
 		if(isset($_POST['submit-posttext']))
 		{
@@ -118,11 +119,22 @@ if (!isset($_SESSION['loggedin'])) {
 		echo '
 		<div class=post-text>
 		<form action="#" method="post">
-           	<input id="posttitle" type="text" placeholder="title" name="posttitle"> <br> <br>
-           	<textarea id="post-content" type="text" placeholder="text" name="postcontent"></textarea> <br> <br>
-         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-posttext">Submit Post</button></form>
-			<div id="failure"></div>
-		</div></div>
+          
+
+		<div class="form-group">
+    <label for="title">Title <span>Use title case to get a better result</span></label>
+    <input type="text" name="title" id="title" class="form-controll"/>
+  </div>
+  <div class="form-group">
+    <label for="caption">Caption <span>This caption should be descriptiv</span></label>
+    <input type="text" name="caption" id="caption" class="form-controll"/>
+  </div>
+  
+  
+  
+  <div class="form-group">
+    <button type="submit">Upload images</button>
+  </div>
 		</form>';
 	}
 
@@ -131,11 +143,29 @@ if (!isset($_SESSION['loggedin'])) {
 		echo '
 		<div class=post-text>
 		<form action="#" method="post">
-           	<input id="posttitle" type="text" placeholder="title" name="posttitle"> <br> <br>
-           	<input type="file" id="postimage" name="postimage" accept="image/png, image/jpeg , image/jpg"> <br> <br>
-         	<button type="submit" class="btnblue" id="sign-up-in-btn" value="Sign up" name="submit-postimage">Submit Post</button></form>
-			<div id="failure"></div>
-		</div></div>
+           	
+		
+  
+  <div class="form-group">
+    <label for="title">Title <span>Use title case to get a better result</span></label>
+    <input type="text" name="title" id="title" class="form-controll"/>
+  </div>
+  
+  
+  <div class="form-group file-area">
+        <label for="images">Images <span>Your images should be at least 400x300 wide</span></label>
+    <input type="file" name="images" id="images" />
+    <div class="file-dummy">
+      <div class="success">Great, your files are selected. Keep on.</div>
+      <div class="default">Please select some files</div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="form-group">
+    <button type="submit">Upload images</button>
+  </div>
 		</form>';
 	}
 

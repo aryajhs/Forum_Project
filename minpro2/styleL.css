@@ -42,7 +42,7 @@ html{
 	height: 100%;
 }
 label{
-	color: linear-gradient(180deg, #15073E 0%, #0F4CA9 100%);
+	color: #fff;
 	font-size: 2.3em;
 	justify-content: center;
 	display: flex;
@@ -70,7 +70,7 @@ button{
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: #00FFFF;
+	background:  #800000;
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 20px;
@@ -81,12 +81,12 @@ button{
 	cursor: pointer;
 }
 button:hover{
-	background: #800000;
+	background: #2e1616;
 }
 .login{
 	height: 460px;
-    background-image: url(images/neon2.jpg);
-	/* background:#9a76df; */
+    /* background-image: url(images/background4.jpg); */
+	 background:#eee;
 	background-size: cover;
 	border-radius: 60% / 10%;
     background-position:  right;
@@ -113,8 +113,11 @@ body{
     width: fit-content;
     height: fit-content;
     background-color: lavender;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/Background.jpg);
-    background-position:  right;
-    background-size: cover;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/background3.jpg);
+    background-position:  left;
+	background-clip: inherit;
+	background-size: cover;
+  
     position: relative;
 }
+

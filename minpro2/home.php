@@ -48,6 +48,12 @@ if (!isset($_SESSION['loggedin'])) {
 				return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
 			}
 		}
+		$name=$_SESSION['name'];
+		$link = mysqli_connect("localhost", "root", "", "phplogin");
+		$querypic = "SELECT profilepic FROM accounts WHERE username='$name'";
+		$row = mysqli_fetch_array(mysqli_query($link, $querypic));
+		$profilepic= htmlspecialchars($row['profilepic'], ENT_QUOTES, 'UTF-8');
+
 
 		$link = mysqli_connect("localhost", "root", "", "phplogin");
 		$query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,downvotes,postvideo FROM post ORDER BY postid DESC";
@@ -94,37 +100,14 @@ if (!isset($_SESSION['loggedin'])) {
 						
 						echo '<p id="submission-info">
 						
-						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a>';
-						
-						echo ' '.timeSince($postts). ' ago, ';
-
-
-						//save operation
-
-						$savequery="Select * from save where username='$name' AND postid='$id'";
-						$resultsave=mysqli_query($link,$savequery);
-
-						if($resultsave->num_rows == 0)
-						{
-							echo '<form action="#" method="post"><button type="submit" name="save"><i class="far fa-bookmark"></i></button></form>';
-							if(!isset($_POST['save'])) mysqli_query($link,"INSERT INTO save VALUES('','$id','$name')");
-						}
-						if($resultsave->num_rows > 0)
-						{
-							echo '<form action="#" method="post"><button type="submit" name="unsave"><i class="fas fa-bookmark"></i></button></form>';
-							if(!isset($_POST['unsave'])) mysqli_query($link,"DELETE FROM save WHERE username='$name' AND postid='$id'");
-						}
-						
-						//save operation ends
-						
+						 <img src='.$profilepic.' type=image/jpg   style="height:35px; border-radius: 50%; border:0.1px;">
+						 <a href="?profile= '. $username . '">' .'&nbsp'. $username . '</a>
+						 <small>'.' '.timeSince($postts). ' ago, </small><br><b><font size="+1">'.$title.'</font></b></p>';
 
 						// echo '<form action="" method="POST"><button type="submit" class="btnblue" id="sign-up-in-btn" value="Save" name="save">Video</button></form>"';
 
-
-						echo '<br>';
-
-						 
-						echo '<div class="title">'.$title.'</div><br>';
+						//echo '<div class="title">'.$title.'</div><br></p>';
+                     echo "<div class='postsx'>";
 					if($content) {
                         echo  $content ;
                         echo '<br>';}
@@ -136,14 +119,30 @@ if (!isset($_SESSION['loggedin'])) {
                         echo '<a href="viewpost.php?postid=' . $id . '"><img src="'.$postimage.'" width="250" height="300"></a> ';
                         echo '<br>';
                     }  
+					echo '</div';
+					echo '</div';
 						
 						
 						
 						
 						
-							echo "<div class='pimage'>";
-				echo '<a href="viewpost.php?postid=' . $id  . '"> <i class="fa fa-comment" ></i> Add a Comment </a> </p></div></div>';
-				echo '</div>';
+				echo "<div class='pimage'>";
+				echo '<a href="viewpost.php?postid=' . $id  . '"> <i class="fa fa-comment" ></i></a> ';
+				$savequery="Select * from save where username='$name' AND postid='$id'";
+				$resultsave=mysqli_query($link,$savequery);
+
+				if($resultsave->num_rows == 0)
+				{
+					echo '<form action="#" method="post"><button type="submit" name="save"><i class="far fa-bookmark"></i></button></form>';
+					if(!isset($_POST['save'])) mysqli_query($link,"INSERT INTO save VALUES('','$id','$name')");
+				}
+				if($resultsave->num_rows > 0)
+				{
+					echo '<form action="#" method="post"><button type="submit" name="unsave"><i class="fas fa-bookmark"></i></button></form>';
+					if(!isset($_POST['unsave'])) mysqli_query($link,"DELETE FROM save WHERE username='$name' AND postid='$id'");
+				}
+
+				echo '</div></div></div>';
 				echo '</div>';
 			}
 		}

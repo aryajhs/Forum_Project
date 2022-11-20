@@ -15,7 +15,7 @@ if (!isset($_SESSION['loggedin'])) {
     <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <meta name="viewport" content=  "with=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styleup.css">
+    <link rel="stylesheet" href="styleup.css?ts=<?=time()?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,900&display=swap" rel="stylesheet">
@@ -24,14 +24,13 @@ if (!isset($_SESSION['loggedin'])) {
     <script defer src="https://friconix.com/cdn/friconix.js"> </script>
 
 </head>
-<body> <div class="loggedin">
+<body>
         <?php
             $link = mysqli_connect("localhost", "root", "", "phplogin");
             $name=$_SESSION['name'];
             $query=" SELECT * FROM accounts Where username='$name' ";
             $result=mysqli_query($link,$query);
             $row=mysqli_fetch_array($result);
-            $username=htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8');
             $password=htmlspecialchars($row['password'], ENT_QUOTES, 'UTF-8');
             $email=htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8');
             $profilepic=htmlspecialchars($row['profilepic'], ENT_QUOTES, 'UTF-8');
@@ -56,68 +55,37 @@ if (!isset($_SESSION['loggedin'])) {
             }
 
 
-            echo'
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-           </nav>
-           <section class="blog-content">  
-			       
-            <div class="sign2">  	
-                <input type="checkbox" id="chk" aria-hidden="true">
-
-                <!-- SIGN UP -->
-        
-                    <div class="signup">
-                        <form action="signup.php" method="post">
-                            <label for="chk" aria-hidden="true">Sign up</label>
-                            <input type="text" id="username" name="username" placeholder="User name" required="">
-                            <input type="text" id="email" name="email" placeholder="Email" required="">
-                            <input type="password" id="password" name="password" placeholder="Password" required="">
-                            <button type="submit" name="SignUp">Sign up</button>
-                        </form>
-                    </div>
-				
-                    <!-- LOGIN -->
-                    
-                    <div class="login">
-                        <form action="authenticate.php" method ="post">
-                            <label for="chk" aria-hidden="true">Login</label>
-                            <input type="username" name="username" placeholder="Username" required="">
-                            <input type="password" name="password" placeholder="Password" required="">
-                            <button type="submit">Login</button>
-                        </form>
-                    </div>
-            </div>
-        </section>
-
-        
-
-        </section>
-         
-
-
-<!------Footer---------->
+            echo'<div class="edit-menu-container" >
+       
+            <h4>Edit Profile</h4>  
+     </div>
+     <div class="edit-main-con">
+         <form action="" method="POST">
+         <div class="edit-image-con">
  
-
-
-
-
-
-
-
-    <!---------------javascript for toggle------------->
-        <script>
-           var navLinks = document.getElementById("navLinks");
-
-           function showMenu(){
-               navLinks.style.right = "0";
-
-           }
-           function hideMenu(){
-               navLinks.style.right = "-200px";
-
-           }
-        </script> ';
-
+             <img src="'.$profilepic.'" alt="">
+             <button>Change Profile 
+                 <span>
+                     <input type="file" name="profilepic">
+                 </span>
+             </button>
+         
+         </div>
+         <div class="edit-profile-con">
+         <label >email</label>
+         <input type="email" value="'.$email.'" name="email">
+         <br><br><br>
+         <label >email</label>
+         <input type="text" value="'.$password.'" name="password">
+         <br><br><br>
+         <label >Bio</label>
+         <input type="text" name="bio" value="'.$bio.'">
+         <button class="button" type="submit" name="submit">update Profile</button>
+         </div>
+     </form>
+     </div>
+ </body>
+ </html>';
     // echo'
     // <div class="edit-menu-container" >
     //        <h4>Edit Profile</h4>  
@@ -141,11 +109,10 @@ if (!isset($_SESSION['loggedin'])) {
     //     </form>
     // </div>
     // '; 
-    ?></div>
+    ?>
+    <!-- </div>
 </body>
-</html>
+</html> -->
 
 <!-- <label >name</label>
                     <input type="text" name="name" value="'.$username.'" ><br><br> -->
-
-

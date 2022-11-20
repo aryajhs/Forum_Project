@@ -46,7 +46,7 @@
     <body>
 		<nav class="navtop">
 			<div>
-				<a href="home.php"><h1>OmniShea</h1></a>
+				<h1>OmniShea</h1>
 				<a href="submit.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Post</a>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
