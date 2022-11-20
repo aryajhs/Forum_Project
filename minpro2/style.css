@@ -53,7 +53,7 @@ p{
 
   }
 
-
+/* 20 11 2022     02 06 by himanshu */
 .content .userdetails
 {
   position: relative;
@@ -225,19 +225,22 @@ body.loggedin {
 .content {
 	width: 1000px;
 	margin: 0 auto;
+  border-color: rgb(247, 246, 246);
 }
 .content h2 {
 	margin: 0;
 	padding: 25px 0;
 	font-size: 22px;
 	border-bottom: 2px;
-	color: rgb(26, 26, 27);
+	color: rgb(244, 244, 247);
 }
 .content > p, .content > div {
 	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
 	margin: 25px 0;
 	padding: 25px;
-	background-color: #fff;
+  
+	/* background-color: rgb(14, 7, 7); */
+  background-image: url(Neon-Wallpapers-1024x576.jpg);
 }
 .content > p table td, .content > div table td {
 	padding: 5px;
@@ -872,3 +875,177 @@ float: left;
 .title > h3{
   font-size:30px ;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sidebar-news h3{
+  font-size: 18px;
+  font-weight: 600;
+  color: green;
+  margin: 10px 0 30px;
+}
+.sidebar-news a{
+  display: block;
+  font-size: 1.sidebar-news6px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: -2px;
+  
+}
+.sidebar-news span
+{
+  font-size: 12px;
+
+}
+.sidebar-news .read-more-link
+{
+  color: #045be6;
+  font-weight: 500;
+  margin: 20px 0 10px;
+}
+.sidebar-ad
+{
+  background: #fff;
+  padding: 15px 25px;
+  text-align: center;
+  margin: 12px 0;
+  font-size: 12px;
+}
+.sidebar-ad img
+{
+  width: 60px;
+  border-radius: 50%;
+  margin: 4px;
+}
+.sidebar-ad small
+{
+  float: right;
+  font-weight: 500;
+}
+.sidebar-ad p
+{
+  margin-top: 30px;
+  margin-top: 10px;
+  margin: 10px;
+}
+.sidebar-ad b
+{
+display: block;
+font-weight: 500;
+margin-top: 10px;
+margin: 4px;
+}
+.ad-link
+{
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 5px 15px;
+  color: sienna;
+  font-weight: 500;
+  margin: 20px auto 10px;
+  
+}
+.sidebar-usefull-links
+{
+  padding: 15px 25px;
+  text-align: center;
+}
+.sidebar-usefull-links a
+{
+  display: inline-block;
+  font-size: 14px;
+  margin: 2px 10px;
+}
+.copyright-msg
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: 500;
+
+}
+.copyright-msg img
+{
+  margin-right: 4px;
+
+}
+
+
+
+
+
+
+
+.edit-image-con {
+  width: 100%;
+  max-width:100px;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom:20px ;
+
+  
+   
+}
+.edit-image-con img {
+  width: 100px;
+  height: 100px;  
+  border-radius: 50%;
+
+}
+.edit-image-con button {
+  width: 130px;
+  border: none;
+  margin-top: 10px;
+  color: black;
+  font-size: 16px;
+  margin-left: -12px;
+   
+  
+}
+.button{
+margin: 10px 0;
+width: 300px;
+height: 50px;
+font-size: 18px;
+/* line-height: 50px; */
+font-weight: 600;
+/* background: #dde1e7; */
+border-radius: 25px;
+border: none;
+outline: none;
+cursor: pointer;
+color: #1b1717ab;
+box-shadow: 2px 2px 5px #BABECC,
+   -5px -5px 10px #ffffff73;
+}
+.button:hover{
+color: black;
+box-shadow: inset 2px 2px 5px #1331a0,
+   inset -5px -5px 10px #910596a2;
+}    

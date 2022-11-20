@@ -6,6 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,16 +52,11 @@ if (!isset($_SESSION['loggedin'])) {
 		$link = mysqli_connect("localhost", "root", "", "phplogin");
 		$query = "SELECT postid, postuser, postcontent, postts, posttitle, upvotes,postscore, postimage ,downvotes,postvideo FROM post ORDER BY postid DESC";
 		//ORDER BY log10(abs(upvotes-downvotes) + 1)*sign(upvotes-downvotes)+(unix_timestamp(postts)/300000) DESC";
-
-		
-		
-
-		
-
 		$result = mysqli_query($link, $query);
 		if ($link === false) {
 			die("ERROR: Could not connect. " . mysqli_connect_error());
 		}
+		$name=$_SESSION['name'];
 		//each post gets on Home page
 		if(mysqli_query($link, $query)) {
 			while ($row = mysqli_fetch_array($result))
@@ -98,22 +94,37 @@ if (!isset($_SESSION['loggedin'])) {
 						
 						echo '<p id="submission-info">
 						
-						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a> <i class="fa-regular fa-circle-bookmark"></i>';
+						<i class="fa fa-user"></i><a href="?profile= '. $username . '">' .' '. $username . '</a>';
 						
-						echo timeSince($postts). ' ago, ';
+						echo ' '.timeSince($postts). ' ago, ';
+
+
+						//save operation
+
+						$savequery="Select * from save where username='$name' AND postid='$id'";
+						$resultsave=mysqli_query($link,$savequery);
+
+						if($resultsave->num_rows == 0)
+						{
+							echo '<form action="#" method="post"><button type="submit" name="save"><i class="far fa-bookmark"></i></button></form>';
+							if(!isset($_POST['save'])) mysqli_query($link,"INSERT INTO save VALUES('','$id','$name')");
+						}
+						if($resultsave->num_rows > 0)
+						{
+							echo '<form action="#" method="post"><button type="submit" name="unsave"><i class="fas fa-bookmark"></i></button></form>';
+							if(!isset($_POST['unsave'])) mysqli_query($link,"DELETE FROM save WHERE username='$name' AND postid='$id'");
+						}
+						
+						//save operation ends
+						
 
 						// echo '<form action="" method="POST"><button type="submit" class="btnblue" id="sign-up-in-btn" value="Save" name="save">Video</button></form>"';
 
 
-
-						// if ($saveresult->num_rows == 0) {
-						// 	echo "<div class='save'><></div>";////////////////////////////////////////////////////
-						// }
-					
 						echo '<br>';
 
 						 
-						echo $title .'<br>';
+						echo '<div class="title">'.$title.'</div><br>';
 					if($content) {
                         echo  $content ;
                         echo '<br>';}
@@ -142,7 +153,8 @@ if (!isset($_SESSION['loggedin'])) {
 		}
 		
 		?>
-		<?php if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
+		<?php 
+		if (isset($_SESSION['name'])) { echo "<input type='hidden' id='username' value='".$_SESSION['name']."'/>"; }?>
 	</div>
 	<script>
 		$(document).ready(function() {
