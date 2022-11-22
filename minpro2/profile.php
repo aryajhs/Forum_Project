@@ -76,9 +76,8 @@ $profilepic= htmlspecialchars($row['profilepic'], ENT_QUOTES, 'UTF-8');
       <div class="profile-content">
         <h1>My Posts</h1>
       <div class="content-container">
-        
-<?php
-   
+
+<?php 
 
 function timeSince($times) {
   date_default_timezone_set('Asia/Kolkata');

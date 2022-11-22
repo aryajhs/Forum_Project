@@ -103,7 +103,6 @@ p{
   height: 120x;
   right: -150px;
   top: -600px;
-
 }
 
 .profile-content h1
@@ -117,6 +116,21 @@ p{
     border-radius: 20px;
     box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
 }
+
+.split-pane
+{
+  position: relative;
+  align-items: center;
+}
+
+.content-type 
+{
+  position: relative;
+  align-items: center;
+}
+
+
+
 
 .login {
     width: 400px;
@@ -505,7 +519,8 @@ top:1px;
   float: center;
 }
 
-.register-form input, textarea {
+.register-form input, textarea 
+{
   width: 85%;
   display: inline-block;
   padding: 12px;
@@ -1166,8 +1181,8 @@ button {
   text-shadow: 0 1px 2px #fff;
   cursor: pointer;
   position: relative;
-  left: 700px;
-  bottom: 50px;
+  left: 7px;
+  bottom: -3px;
 }
 
 .form-group {
