@@ -72,10 +72,10 @@ if (!isset($_SESSION['loggedin'])) {
          
          </div>
          <div class="edit-profile-con">
-         <label >email</label>
+         <label >Email</label>
          <input type="email" value="'.$email.'" name="email">
          <br><br><br>
-         <label >email</label>
+         <label >Password</label>
          <input type="text" value="'.$password.'" name="password">
          <br><br><br>
          <label >Bio</label>

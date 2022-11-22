@@ -41,7 +41,8 @@ $profilepic= htmlspecialchars($row['profilepic'], ENT_QUOTES, 'UTF-8');
       <div>
         <h1>OmniShea</h1>
         <a href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
-        <a href="product.php"><i class="fa-solid fa-poo"></i>Product</a>
+        <a href="submit.php"><i class="fa fa-plus-circle" aria-hidden="true"></i>Create Post</a>
+        <a href="product.php"><i class="fa-regular fa-address-card"></i>About</a>
         <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
       </div>
     </nav>

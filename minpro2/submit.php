@@ -122,18 +122,18 @@ if (!isset($_SESSION['loggedin'])) {
           
 
 		<div class="form-group">
-    <label for="title">Title <span>Use title case to get a better result</span></label>
-    <input type="text" name="title" id="title" class="form-controll"/>
+    <label for="title"><span>TITLE</span></label>
+    <input type="text" name="posttitle" id="title" class="form-controll"/>
   </div>
   <div class="form-group">
-    <label for="caption">Caption <span>This caption should be descriptiv</span></label>
-    <input type="text" name="caption" id="caption" class="form-controll"/>
+    <label for="caption">Caption <span></span></label>
+    <input type="text" name="postcontent" id="textcontent" class="form-controll"/>
   </div>
   
   
   
   <div class="form-group">
-    <button type="submit">Upload images</button>
+    <button type="submit" name="submit-posttext">Upload</button>
   </div>
 		</form>';
 	}
@@ -147,14 +147,14 @@ if (!isset($_SESSION['loggedin'])) {
 		
   
   <div class="form-group">
-    <label for="title">Title <span>Use title case to get a better result</span></label>
-    <input type="text" name="title" id="title" class="form-controll"/>
+    <label for="title">Title <span>TEXT</span></label>
+    <input type="text" name="posttitle" id="title" class="form-controll"/>
   </div>
   
   
   <div class="form-group file-area">
-        <label for="images">Images <span>Your images should be at least 400x300 wide</span></label>
-    <input type="file" name="images" id="images" />
+        <label for="images">Images <span>UPLOAD IMAGE</span></label>
+    <input type="file" name="postimage" id="images" />
     <div class="file-dummy">
       <div class="success">Great, your files are selected. Keep on.</div>
       <div class="default">Please select some files</div>
@@ -164,7 +164,7 @@ if (!isset($_SESSION['loggedin'])) {
   
   
   <div class="form-group">
-    <button type="submit">Upload images</button>
+    <button type="submit" name="submit-postimage">Upload</button>
   </div>
 		</form>';
 	}

@@ -13,7 +13,7 @@
 
 
 p{
-    color: black;
+    color: #ff4500;
     font-family: 'Times New Roman', serif;
     padding-top: 0px;
     text-align: center;
@@ -203,7 +203,8 @@ p{
   justify-content: space-between;
   align-items: center;
   opacity: 90%; */
-  background: linear-gradient(180deg, #15073E 0%, #0F4CA9 100%);
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(74,6,20,1) 100%);
   overflow: hidden;
   position: fixed;
   top:0;
@@ -269,7 +270,7 @@ body.loggedin {
 	padding: 25px;
   
 	/* background-color: rgb(14, 7, 7); */
-  background-image: url(Neon-Wallpapers-1024x576.jpg);
+  background-image: url(images/proback.png);
 }
 .content > p table td, .content > div table td {
 	padding: 5px;
@@ -367,7 +368,7 @@ body {
   background-position:  right;
   background-size: cover;
   position: relative;
-  background-image: url(images/home.jpg);
+  background-image: url(images/home2.jpg);
   background-color: rgb(15, 12, 12);
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -539,7 +540,7 @@ top:1px;
 }
 
 .split-pane h1 {
-  color: rgb(66, 112, 162);
+  color: rgb(3, 3, 4);
   margin-bottom: 20px;
 }
 
@@ -577,6 +578,11 @@ top:1px;
 
 .post-comment {
     width: 80% !important;
+}
+.comment-container > p
+{
+  font-size: 32px;
+  color: white;
 }
 }
 
@@ -1012,6 +1018,8 @@ font{
 margin: 10px 0;
 width: 300px;
 height: 50px;
+position: relative;
+padding-bottom: 10px;
 font-size: 18px;
 /* line-height: 50px; */
 font-weight: 600;
@@ -1029,6 +1037,13 @@ color: black;
 box-shadow: inset 2px 2px 5px #1331a0,
    inset -5px -5px 10px #910596a2;
 }    
+
+
+.logo{
+  
+  font-size: 16px;
+  display: inline-block;
+}
 
 
 
@@ -1141,8 +1156,9 @@ label {
   display: block;
   margin: 4px 0;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 18px;
   overflow: hidden;
+  color: rgb(255, 255, 255);
   
   span {
     float: right;
@@ -1172,7 +1188,7 @@ label {
 
 button {
   padding: 8px 30px;
-  background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
+  /* background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover; */
   color: #053777;
   text-transform: uppercase;
   font-weight: 600;
@@ -1183,6 +1199,7 @@ button {
   position: relative;
   left: 7px;
   bottom: -3px;
+  border-radius: 20PX;
 }
 
 .form-group {

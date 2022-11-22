@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body{
-  background-image: url(images/Background.jpg);
+  background-image: url(images/background4.jpg);
   background-size: cover;
 }
 .edit-menu-container{
@@ -37,20 +37,23 @@ padding-top: 10px;
 
 }
 .edit-image-con button {
+  background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
   width: 130px;
   border: none;
   margin-top: 10px;
-  color: black;
-  font-size: 16px;
+  color: #0bbcd0;
+
+  font-size: 23px;
   margin-left: -12px;
    
   
 }
 span input[type=file]
 {
-  width: 90px;
+  /* width: 90px; */
   height: 100;
   padding: 10px;
+  color: #0bbcd0;
 
   
 }
@@ -61,13 +64,14 @@ span input[type=file]
 }
 .edit-profile-con input[type=text]
 {
-  height: 100%;
   width: 100%;
   padding: 10px;
   margin-top: 8px;
   margin-bottom: 8px;
-  border: none;
-  border-bottom: 1px solid black;
+  border: solid;
+  opacity: 70%;
+  border: black;
+  border-radius: 20px;
    
 }
 .edit-profile-con  label{
@@ -101,7 +105,17 @@ box-shadow: inset 2px 2px 5px #BABECC,
   padding: 10px;
   margin-top: 8px;
   margin-bottom: 8px;
-  border: none;
-  border-bottom: 1px solid black;
+  border: solid;
+  opacity: 70%;
+  border: black;
+  border-radius: 20px;
    
+}
+label{
+  font-size: 24px;
+  color: #0bbcd0;
+}
+h4{
+  font-size: 24px;
+  color: #0bbcd0;
 }

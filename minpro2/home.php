@@ -23,6 +23,9 @@ if (!isset($_SESSION['loggedin'])) {
 	 
 		<nav class="navtop">
 			<div>
+				 
+
+
 				<h1>OmniShea</h1>
 				<a href="submit.php"><i class="fa fa-plus-circle" aria-hidden="true"></i>Create Post</a>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
@@ -100,7 +103,7 @@ if (!isset($_SESSION['loggedin'])) {
 						
 						echo '<p id="submission-info">
 						
-						 <img src='.$profilepic.' type=image/jpg   style="height:35px; border-radius: 50%; border:0.1px;">
+						 <img src='.$profilepic.' type=image/jpg   style="height:45px; border-radius: 50%; border:0.1px; width:8%">
 						 <a href="?profile= '. $username . '">' .'&nbsp'. $username . '</a>
 						 <small>'.' '.timeSince($postts). ' ago, </small><br><b><font size="+1">'.$title.'</font></b></p>';
 

@@ -22,7 +22,7 @@
 <head>
 		<meta charset="utf-8">
 		<title>Viewpost</title>
-		<link href="style.css?ts=<?=time()?>" rel="stylesheet" type="text/css">
+		<link href="style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
 
@@ -47,6 +47,7 @@
 		<nav class="navtop">
 			<div>
 				<h1>OmniShea</h1>
+                <a href="home.php"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
 				<a href="submit.php"><i class="fa fa-plus-circle" aria-hidden="true"></i> Create Post</a>
 				<a href="profile.php"><i class="fas fa-user-circle"></i>Profile</a>
 				<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
